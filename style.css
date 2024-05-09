@@ -1,9 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+/* Globals */
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --successbtn: #5cb85c;
+    --errorbtn: #d9534f;
+    --maintbn: orange;
+}
+
+/* Remove button default outline and border */
+/* Set defaul padding */
+button {
+    border: none;
+    outline: none;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: 0.2s ease-in-out;
+}
+
+button:hover {
+    scale: 1.04;
+}
+.header {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
 * {
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
+
 body {
     width: 100%;
     margin: 0;
@@ -17,37 +49,195 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
 }
+
 nav>div:first-child {
     display: flex;
     align-items: center;
+    gap: 0.5rem;
     font-size: 1.75rem;
     font-weight: 900;
     color: white;
 }
+
 .nav-logo {
     width: 5rem;
     aspect-ratio: 1/1;
 }
+
 .nav-link {
     display: flex;
     align-items: stretch;
+    gap: 2rem;
+    padding-inline: 1rem;
     color: white;
 }
+
 .nav-link>div {
-    padding: 1rem;
     font-weight: 600;
     font-size: 1.15rem;
     display: flex;
     align-items: center;
 }
+
 .nav-link>div:hover {
     cursor: pointer;
-    background: orange;
+    color: orange;
+    text-decoration: underline;
 }
 
 /* Home section */
+#home {
+    width: 100%;
+}
+
 /* Hero */
+#hero {
+    height: 70vh;
+    width: 100%;
+    background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("images/slide1.jpg") no-repeat center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+#hero>span {
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: white;
+}
+
+#hero>button {
+    color: white;
+    background: var(--maintbn);
+}
+
+/* Information */
+#info {
+    margin: 1.5rem 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding-inline: 1rem;
+}
+
+/* Prices */
+#prices {
+    width: 100%;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#prices>div {
+    aspect-ratio: 4/2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 8px;
+    color: white;
+}
+
+#prices>div:first-child {
+    background: url("images/regular.jpg") no-repeat center/cover;
+}
+
+#prices>div:nth-child(2) {
+    background: url("images/deluxe.jpg") no-repeat center/cover;
+}
+
+#prices>div:nth-child(3) {
+    background: url("images/suite.jpg") no-repeat center/cover;
+}
+
+#prices>div>span {
+    font-size: 1.15rem;
+    font-weight: 500;
+}
+#prices>div>div {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+#prices>div>div>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Promo */
+#promo {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+#promo>div:first-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#promo>div:first-child>img {
+    width: 80%;
+}
+
+/* Form styling */
+main {
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("images/slide1.jpg") no-repeat center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+main > form {
+    width: 80%;
+    padding: 1rem;
+    border-radius: 8px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.form-body {
+    width: 100%;
+}
+.form-header {
+    padding: 1.5rem 0;
+    border-bottom: 2px solid black;
+    width: 100%;
+    text-align: center;
+}
+.form-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.form-control {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+.form-control > input {
+    padding: 0.5rem 1rem;
+}
+.form-action {
+    display: flex;
+    gap: 2rem;
+}
+button[type="reset"] {
+    background: var(--errorbtn);
+    color: white;
+}
+button[type="submit"] {
+    background-color: var(--successbtn);
+}
