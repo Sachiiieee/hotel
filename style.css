@@ -192,7 +192,7 @@ nav>div:first-child {
 /* Form styling */
 main {
     min-height: 100vh;
-    background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("images/slide1.jpg") no-repeat center/cover;
+    background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("images/slide1.jpg") no-repeat center/cover fixed;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -234,10 +234,75 @@ main > form {
     display: flex;
     gap: 2rem;
 }
-button[type="reset"] {
+button[type="reset"], .back-btn, .del-btn {
     background: var(--errorbtn);
     color: white;
 }
-button[type="submit"] {
+button[type="submit"]:not(.del-btn) {
     background-color: var(--successbtn);
+}
+
+/* Receipt design */
+#receipt {
+    width: 50%;
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.receipt-row {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+.info {
+    width: 100%;
+    padding: 0.25rem 1rem;
+    text-align: center;
+    border-radius: 8px;
+    margin: 0.5rem 0;
+}
+.info-success {
+    background: var(--successbtn);
+}
+
+/* Admin page styling */
+#admin-nav {
+    width: 60%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0.5rem;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.5);
+    gap: 2rem;
+    color: white;
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+#admin-nav>div {
+    text-align: center;
+    cursor: pointer;
+}
+#admin-nav>div:hover {
+    text-decoration: underline;
+}
+table {
+    width: 70%;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    background: whitesmoke;
+}
+table {
+    table-layout: fixed;
+    border-radius: 8px;
+}
+table>tbody>tr>td {
+    text-align: center;
+}
+.action {
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
 }

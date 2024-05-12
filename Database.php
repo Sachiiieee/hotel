@@ -5,7 +5,7 @@ class Database{
 	const DB_HOST = "localhost";
 	const DB_USER = "root";
 	const DB_PWD = "";
-	const DB_NAME = "cozyy";
+	const DB_NAME = "cozycorner";
 
 
 	protected function db_connect(){

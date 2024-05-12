@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require_once 'Database.php';
 
 class Reservation extends Database
@@ -81,8 +82,79 @@ class Reservation extends Database
 
         // compute subtotal
         $this->sub = $this->rate * $this->day;
+        // compute total discount 
+        $this->discTotal = $this->sub * $this->disc;
+        // compute additional charges
+        $this->addTotal = $this->sub * $this->add;
+        // compute for the total
+        $this->total = $this->sub + $this->addTotal - $this->discTotal;
+
+        // Create an array to view computed values //
+        $_SESSION['data'] = [
+            'name' => $name,
+            'phone' => $phone,
+            'from' => $from,
+            'to' => $to,
+            'room' => $type,
+            'cap' => $cap,
+            'payment' => $pay,
+            'date' => date('F d, Y'),
+            'time' => date('h:i a'),
+            'days' => $this->day,
+            'rate' => $this->rate,
+            'sub' => $this->sub,
+            'add' => $this->addTotal,
+            'disc' => $this->discTotal,
+            'total' => $this->total,
+        ];
+
+        header('Location: Receipt.php');
     }
-    public function insert()
+    // Create, Read, Update, Delete functions below
+    // Create
+    public function insert($name, $phone, $date, $time, $from, $to, $room, $cap, $payment, $days, $rate, $sub, $disc, $add, $total, $status)
     {
+        $sql = "INSERT INTO reservations VALUES ('', ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $stmt = $this->db_connect()->prepare($sql);
+        $stmt->execute([$date, $time, $name, $phone, $from, $to, $room, $cap, $payment, $status, $days, $rate, $sub, $add, $disc, $total]);
+        $_SESSION['success'] = true;
+        return header('Location: index.php');
+    }
+    // Read
+    public function setView($value) {
+        if (isset($_SESSION['viewArray'])) {
+            unset($_SESSION['viewArray']);
+        }
+        $viewArray = [];
+
+        // Query reservations
+        $sql = "SELECT * FROM reservations WHERE status = ?";
+        $stmt = $this->db_connect()->prepare($sql);
+
+        // Add query parameter depending on status to query
+        $stmt->execute([$value]);
+        // Get row count from query
+        while ($row = $stmt->fetch()) {
+            array_push($viewArray, $row);
+        }
+        $_SESSION['page'] = $value;
+        $_SESSION['viewArray'] = $viewArray;
+        return header('Location: Admin.php');
+    }
+    // Update
+    public function update($id, $status) {
+        $sql = "UPDATE reservations SET status = ? WHERE id = ?";
+        $stmt = $this->db_connect()->prepare($sql);
+        $stmt->execute([$status, $id]);
+        $_SESSION['updatemsg'] = "Status Updated!";
+        return header('Location: Receiver.php?view=' . $status);
+    }
+    // Delete 
+    public function delete($id) {
+        $sql = "DELETE FROM reservations WHERE id = ?";
+        $stmt = $this->db_connect()->prepare($sql);
+        $stmt->execute([$id]);
+        $_SESSION['updatemsg'] = "Information Deleted!";
+        return header('Location: Receiver.php?view=Pending');
     }
 }

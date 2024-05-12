@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php session_start() ?>
 
 <head>
     <meta charset="UTF-8">
@@ -9,6 +10,12 @@
 </head>
 
 <body>
+    <?php
+    if (isset($_SESSION['success']) && $_SESSION['success'] == true) {
+        echo "<script> alert('Reservation successfully submitted!'); </script>";
+        unset($_SESSION['success']);
+    }
+    ?>
     <nav>
         <div>
             <img class="nav-logo" src="images/cclogo.png" alt="logo">
