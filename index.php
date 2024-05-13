@@ -21,6 +21,8 @@
             <img class="nav-logo" src="images/cclogo.png" alt="logo">
             <span>Cozy Corner</span>
         </div>
+        <!-- by section ang location ng href dto so sa section nyo sa babang part ilalagay content nung target page -->
+        <!-- if want nyo baguhin tanggalin nyo lng ung mga section sa baba gawan nyo ng mga pages if yon trip nyo, palitan nyo lang ung mga href -->
         <div class="nav-link">
             <div onclick="location.href = '#'">Home</div>
             <div onclick="location.href = '#about'">About Us</div>
@@ -95,8 +97,8 @@
             </div>
         </div>
     </section>
-    <section></section>
-    <section></section>
+    <section id="about"></section>
+    <section id="contact"></section>
 </body>
 
 </html>
